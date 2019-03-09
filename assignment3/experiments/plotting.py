@@ -18,6 +18,7 @@ from kneed import KneeLocator
 from matplotlib import cycler
 from matplotlib.ticker import NullFormatter, FormatStrFormatter
 from os.path import basename
+from numpy import matlib
 
 # Configure logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
@@ -154,7 +155,7 @@ def find_knee(values):
     # the unit vector that points in the direction of the line (this gives us
     # the length of the projection of vecFromFirst onto the line). If we
     # multiply the scalar product by the unit vector, we have vecFromFirstParallel
-    scalarProduct = np.sum(vecFromFirst * np.matlib.repmat(lineVecNorm, nPoints, 1), axis=1)
+    scalarProduct = np.sum(vecFromFirst * matlib.repmat(lineVecNorm, nPoints, 1), axis=1)
     vecFromFirstParallel = np.outer(scalarProduct, lineVecNorm)
     vecToLine = vecFromFirst - vecFromFirstParallel
 
